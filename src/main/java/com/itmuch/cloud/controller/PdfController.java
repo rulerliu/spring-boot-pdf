@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.itmuch.cloud.util.PdfUtil;
 
 @Controller
@@ -17,8 +19,49 @@ public class PdfController {
 
 	@RequestMapping("/download")
 	public void download (HttpServletResponse response) throws Exception {
-		Object[][] datas = {{"区域", "总销售额", "总利润"}, {"江苏省" , 9045,  2256}, {"广东省", 3000, 690}};
-		PdfUtil.export(response, datas);
+		String data = "[{\r\n" + 
+    			"	\"idcard\": \"身份证\",\r\n" + 
+    			"	\"jobNAME\": \"大学专科\",\r\n" + 
+    			"	\"peopleNAME\": \"人员16\",\r\n" + 
+    			"	\"callNum\": \"13588888888\"	\r\n" + 
+    			"}, {\r\n" + 
+    			"	\"idcard\": \"居民身份证\",\r\n" + 
+    			"	\"jobNAME\": \"大学专科\",\r\n" + 
+    			"	\"peopleNAME\": \"人员二\",\r\n" + 
+    			"	\"callNum\": \"13588888888\"\r\n" + 
+    			"}, {\r\n" + 
+    			"	\"idcard\": \"居民身份证\",\r\n" + 
+    			"	\"jobNAME\": \"大学专科\",\r\n" + 
+    			"	\"peopleNAME\": \"人员一\",\r\n" + 
+    			"	\"callNum\": \"13588888888\"\r\n" + 
+    			"}, {\r\n" + 
+    			"	\"idcard\": \"居民身份证\",\r\n" + 
+    			"	\"jobNAME\": \"大学专科\",\r\n" + 
+    			"	\"peopleNAME\": \"人员15\",\r\n" + 
+    			"	\"callNum\": \"13588888888\"\r\n" + 
+    			"}, {\r\n" + 
+    			"	\"idcard\": \"居民身份证\",\r\n" + 
+    			"	\"jobNAME\": \"大学专科\",\r\n" + 
+    			"	\"peopleNAME\": \"人员14\",\r\n" + 
+    			"	\"callNum\": \"13588888888\"\r\n" + 
+    			"}, {\r\n" + 
+    			"	\"idcard\": \"居民身份证\",\r\n" + 
+    			"	\"jobNAME\": \"大学专科\",\r\n" + 
+    			"	\"peopleNAME\": \"人员13\",\r\n" + 
+    			"	\"callNum\": \"13588888888\"\r\n" + 
+    			"}, {\r\n" + 
+    			"	\"idcard\": \"居民身份证\",\r\n" + 
+    			"	\"jobNAME\": \"大学专科\",\r\n" + 
+    			"	\"peopleNAME\": \"人员11\",\r\n" + 
+    			"	\"callNum\": \"13588888888\"\r\n" + 
+    			"}, {\r\n" + 
+    			"	\"idcard\": \"居民身份证\",\r\n" + 
+    			"	\"jobNAME\": \"大学专科\",\r\n" + 
+    			"	\"peopleNAME\": \"人员51\",\r\n" + 
+    			"	\"callNum\": \"13588888888\"\r\n" + 
+    			"}]";
+		JSONArray parseArray = JSONObject.parseArray(data);
+		PdfUtil.export(response, parseArray);
 	}
 	
 }
